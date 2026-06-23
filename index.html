@@ -23,7 +23,14 @@
       padding: 20px 40px;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 8px;
+      padding: 3px;
+    }
     .logo-name {
       font-size: 12px;
       font-weight: 500;
@@ -62,14 +69,14 @@
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
 
     h1 {
-      font-size: 48px;
-      font-weight: 600;
-      letter-spacing: -1.5px;
+      font-size: 54px;
+      font-weight: 700;
+      letter-spacing: -2px;
       color: #f0f0fa;
-      line-height: 1.05;
+      line-height: 1.0;
       margin-bottom: 14px;
     }
-    h1 span { color: #3d8ef8; }
+    h1 span { color: #ef4444; }
 
     .subtitle {
       font-size: 15px;
@@ -79,17 +86,36 @@
       line-height: 1.75;
     }
 
+    /* ── Tip 80% ── */
+    .tip-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 10px;
+      padding: 12px 18px;
+      max-width: 560px;
+      margin: 28px auto 0;
+      font-size: 13px;
+      color: #fca5a5;
+      line-height: 1.5;
+    }
+    .tip-banner strong { color: #f87171; }
+    .tip-icon { font-size: 18px; flex-shrink: 0; }
+
     /* ── Features ── */
     .features {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       max-width: 880px;
-      margin: 0 auto;
+      margin: 48px auto 0;
       padding: 0 32px 48px;
     }
     @media (max-width: 700px) {
       .features { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 40px; }
     }
     .feat {
       background: #13131e;
@@ -130,11 +156,11 @@
       outline: none;
       transition: border-color .15s;
     }
-    .input-row input:focus { border-color: #3d8ef8; }
+    .input-row input:focus { border-color: #ef4444; }
     .input-row input::placeholder { letter-spacing: 0; color: #34344a; font-family: system-ui; }
 
     .btn-access {
-      background: #3d8ef8;
+      background: #ef4444;
       color: #fff;
       border: none;
       border-radius: 9px;
@@ -145,7 +171,7 @@
       transition: background .15s;
       white-space: nowrap;
     }
-    .btn-access:hover { background: #5a9fff; }
+    .btn-access:hover { background: #f87171; }
 
     .error-msg {
       font-size: 12px;
@@ -202,9 +228,9 @@
 <!-- Header -->
 <header class="header">
   <svg class="logo-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="30" height="30" rx="7" fill="#181826"/>
+    <rect width="30" height="30" rx="6" fill="#ffffff"/>
     <path d="M4 19 Q6.5 11 9 19 Q11.5 27 14 15 Q16.5 3 19 15 Q21.5 27 24 19 Q26 13 27 19"
-          stroke="#3d8ef8" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   <span class="logo-name">Syncro Beats Audio</span>
 </header>
@@ -217,14 +243,19 @@
     Procesador de voz en vivo con inteligencia artificial.<br>
     Elimina ruido de fondo en tiempo real, sin afectar la voz.
   </p>
+
+  <div class="tip-banner">
+    <span class="tip-icon">🎚️</span>
+    <span><strong>Tip:</strong> Empezá con el fader de procesamiento al <strong>80%</strong> como punto de partida. Podés ajustarlo según el ruido del ambiente.</span>
+  </div>
 </section>
 
 <!-- Features -->
 <section class="features">
   <div class="feat">
     <div class="feat-icon">🧠</div>
-    <h3>DeepFilterNet 3</h3>
-    <p>Red neuronal entrenada con millones de grabaciones de voz y ruido</p>
+    <h3>Motor de IA</h3>
+    <p>Red neuronal entrenada para separar voz de ruido con alta precisión</p>
   </div>
   <div class="feat">
     <div class="feat-icon">⚡</div>
@@ -234,7 +265,7 @@
   <div class="feat">
     <div class="feat-icon">🎚️</div>
     <h3>Control simple</h3>
-    <p>Un fader DF Mix 0–100%. Sin menús ni configuración compleja</p>
+    <p>Un fader de procesamiento 0–100%. Sin menús ni configuración compleja</p>
   </div>
   <div class="feat">
     <div class="feat-icon">🔌</div>
@@ -265,18 +296,18 @@
     <!-- Download section — hidden until correct code entered -->
     <div class="downloads" id="download-section">
 
-      <a class="dl-btn dl-win" href="WINDOWS_LINK_AQUI" target="_blank" rel="noopener">
+      <a class="dl-btn dl-win" href="https://github.com/ferschleider-wq/vocalshield-beta/releases/download/v0.3-trial/VocalShield-Trial-Windows-Setup.exe" target="_blank" rel="noopener">
         <div>
           <div class="dl-label win-c">⊞ &nbsp;Windows</div>
-          <div class="dl-sub">VocalShield-Windows-Setup.exe &middot; ~140 MB</div>
+          <div class="dl-sub">VocalShield-Trial-Windows-Setup.exe &middot; ~140 MB</div>
         </div>
         <span class="dl-arrow win-c">↓</span>
       </a>
 
-      <a class="dl-btn dl-mac" href="MACOS_LINK_AQUI" target="_blank" rel="noopener">
+      <a class="dl-btn dl-mac" href="https://github.com/ferschleider-wq/vocalshield-beta/releases/download/v0.3-trial/VocalShield-Trial-macOS.pkg" target="_blank" rel="noopener">
         <div>
           <div class="dl-label mac-c"> &nbsp;macOS</div>
-          <div class="dl-sub">VocalShield-macOS.pkg &middot; Instalador universal (Intel + Apple Silicon)</div>
+          <div class="dl-sub">VocalShield-Trial-macOS.pkg &middot; Instalador universal (Intel + Apple Silicon)</div>
         </div>
         <span class="dl-arrow mac-c">↓</span>
       </a>
@@ -293,7 +324,6 @@
 
 <script>
   // Código de acceso: VSBEAT2026
-  // Para cambiar el código, modificá la constante ACCESS y actualizá la página.
   var ACCESS = "VlNCRUFUMjAyNg==";
 
   function checkCode() {
