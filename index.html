@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VocalShield — Beta Confidencial | Syncro Beats Audio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0d0d14;
+      color: #e8e8f0;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .logo-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #6666a0;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 64px 32px 44px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(239,68,68,0.1);
+      color: #f87171;
+      border: 1px solid rgba(239,68,68,0.22);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 14px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f87171;
+      animation: blink 1.8s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -1.5px;
+      color: #f0f0fa;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+    h1 span { color: #3d8ef8; }
+
+    .subtitle {
+      font-size: 15px;
+      color: #6a6a90;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── Features ── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 32px 48px;
+    }
+    @media (max-width: 700px) {
+      .features { grid-template-columns: repeat(2, 1fr); }
+    }
+    .feat {
+      background: #13131e;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 20px 18px;
+    }
+    .feat-icon { font-size: 22px; margin-bottom: 12px; }
+    .feat h3 { font-size: 13px; font-weight: 500; color: #c8c8e0; margin-bottom: 5px; }
+    .feat p  { font-size: 12px; color: #4e4e70; line-height: 1.55; }
+
+    /* ── Access card ── */
+    .access-wrap {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 0 32px 64px;
+    }
+    .access-card {
+      background: #13131e;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 30px;
+    }
+    .access-card h2 { font-size: 16px; font-weight: 500; color: #d0d0e8; margin-bottom: 8px; }
+    .access-card .hint { font-size: 13px; color: #4e4e70; line-height: 1.65; margin-bottom: 22px; }
+
+    .input-row { display: flex; gap: 8px; }
+    .input-row input {
+      flex: 1;
+      background: #0a0a12;
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 9px;
+      padding: 10px 14px;
+      color: #e8e8f0;
+      font-size: 14px;
+      letter-spacing: 2px;
+      font-family: monospace;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .input-row input:focus { border-color: #3d8ef8; }
+    .input-row input::placeholder { letter-spacing: 0; color: #34344a; font-family: system-ui; }
+
+    .btn-access {
+      background: #3d8ef8;
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .15s;
+      white-space: nowrap;
+    }
+    .btn-access:hover { background: #5a9fff; }
+
+    .error-msg {
+      font-size: 12px;
+      color: #f87171;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* ── Download buttons (hidden by default) ── */
+    .downloads {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .downloads.visible { display: flex; }
+
+    .dl-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 18px;
+      border-radius: 11px;
+      border: 1px solid rgba(255,255,255,0.09);
+      text-decoration: none;
+      transition: background .15s;
+      cursor: pointer;
+    }
+    .dl-btn:hover { filter: brightness(1.12); }
+
+    .dl-win { background: rgba(61,142,248,0.08); }
+    .dl-mac { background: rgba(34,197,94,0.07); }
+
+    .dl-label { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+    .dl-sub   { font-size: 11px; color: #4e4e70; }
+    .dl-arrow { font-size: 18px; font-weight: 500; }
+
+    .win-c { color: #3d8ef8; }
+    .mac-c { color: #22c55e; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 28px;
+      font-size: 11px;
+      color: #30304a;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <svg class="logo-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="30" height="30" rx="7" fill="#181826"/>
+    <path d="M4 19 Q6.5 11 9 19 Q11.5 27 14 15 Q16.5 3 19 15 Q21.5 27 24 19 Q26 13 27 19"
+          stroke="#3d8ef8" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="logo-name">Syncro Beats Audio</span>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="badge"><span class="dot"></span> Beta confidencial</div>
+  <h1>Vocal<span>Shield</span></h1>
+  <p class="subtitle">
+    Procesador de voz en vivo con inteligencia artificial.<br>
+    Elimina ruido de fondo en tiempo real, sin afectar la voz.
+  </p>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <div class="feat">
+    <div class="feat-icon">🧠</div>
+    <h3>DeepFilterNet 3</h3>
+    <p>Red neuronal entrenada con millones de grabaciones de voz y ruido</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">⚡</div>
+    <h3>Ultra baja latencia</h3>
+    <p>10 ms a 48 kHz. Compatible con sesiones a 96 kHz</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🎚️</div>
+    <h3>Control simple</h3>
+    <p>Un fader DF Mix 0–100%. Sin menús ni configuración compleja</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🔌</div>
+    <h3>VST3 nativo</h3>
+    <p>Windows x64 y macOS universal (Intel + Apple Silicon)</p>
+  </div>
+</section>
+
+<!-- Access + Downloads -->
+<section class="access-wrap">
+  <div class="access-card">
+    <h2>Descargar instalador</h2>
+    <p class="hint">Ingresá el código de acceso que te compartimos para ver los archivos de instalación.</p>
+
+    <div class="input-row">
+      <input
+        type="text"
+        id="access-input"
+        placeholder="Código de acceso"
+        autocomplete="off"
+        spellcheck="false"
+        onkeydown="if(event.key==='Enter') checkCode()"
+      />
+      <button class="btn-access" onclick="checkCode()">Entrar</button>
+    </div>
+    <p class="error-msg" id="error-msg">Código incorrecto. Pedíselo a tu contacto en Syncro Beats Audio.</p>
+
+    <!-- Download section — hidden until correct code entered -->
+    <div class="downloads" id="download-section">
+
+      <a class="dl-btn dl-win" href="WINDOWS_LINK_AQUI" target="_blank" rel="noopener">
+        <div>
+          <div class="dl-label win-c">⊞ &nbsp;Windows</div>
+          <div class="dl-sub">VocalShield-Windows-Setup.exe &middot; ~140 MB</div>
+        </div>
+        <span class="dl-arrow win-c">↓</span>
+      </a>
+
+      <a class="dl-btn dl-mac" href="MACOS_LINK_AQUI" target="_blank" rel="noopener">
+        <div>
+          <div class="dl-label mac-c"> &nbsp;macOS</div>
+          <div class="dl-sub">VocalShield-macOS.pkg &middot; Instalador universal (Intel + Apple Silicon)</div>
+        </div>
+        <span class="dl-arrow mac-c">↓</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  © 2026 Syncro Beats Audio<br>
+  Distribución restringida. No compartir sin autorización.
+</footer>
+
+<script>
+  // Código de acceso: VSBEAT2026
+  // Para cambiar el código, modificá la constante ACCESS y actualizá la página.
+  var ACCESS = "VlNCRUFUMjAyNg==";
+
+  function checkCode() {
+    var input = document.getElementById("access-input").value.trim().toUpperCase();
+    if (btoa(input) === ACCESS) {
+      document.getElementById("download-section").classList.add("visible");
+      document.getElementById("error-msg").style.display = "none";
+      document.getElementById("access-input").disabled = true;
+      document.querySelector(".btn-access").disabled = true;
+    } else {
+      document.getElementById("error-msg").style.display = "block";
+      document.getElementById("access-input").select();
+    }
+  }
+</script>
+
+</body>
+</html>
